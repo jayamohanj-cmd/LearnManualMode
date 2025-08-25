@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Spritesheet Tester</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    :root{--bg:#0b0d10;--fg:#e8eef2;--line:#ffffff22;--accent:#7cd1ff}
+    html,body{height:100%}
+    body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.4 ui-sans-serif,system-ui;display:grid;grid-template-rows:auto 1fr}
+    header{display:flex;gap:10px;align-items:center;padding:10px;border-bottom:1px solid var(--line)}
+    input[type="number"]{width:6em}
+    main{display:grid;place-items:center;padding:16px}
+    canvas{background:#000;border-radius:12px;box-shadow:0 8px 30px #0008}
+    .row{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+    .btn{border:1px solid var(--line);background:#131922;color:var(--fg);padding:6px 10px;border-radius:8px;cursor:pointer}
+    .btn:hover{border-color:var(--accent)}
+    .hint{opacity:.8}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="row">
+      <label>PNG URL <input id="url" type="url" placeholder="./assets/runner.png" size="32"></label>
+      <label>or File <input id="file" type="file" accept="image/png,image/*"></label>
+      <label>Frame W <input id="fw" type="number" value="64"></label>
+      <label>Frame H <input id="fh" type="number" value="64"></label>
+      <label>Frames <input id="frames" type="number" value="6"></label>
+      <label>FPS <input id="fps" type="number" value="12" step="1"></label>
+      <label><input id="pix" type="checkbox" checked> Pixelated</label>
+      <button id="load" class="btn">Load</button>
+    </div>
+    <div class="row hint">Drag & drop a PNG anywhere on this page.</div>
+  </header>
+  <main>
+    <canvas id="cv" width="640" height="640" aria-label="Spritesheet preview"></canvas>
+  </main>
+  <script src="./spritesheet-test.js" defer></script>
+</body>
+</html>
