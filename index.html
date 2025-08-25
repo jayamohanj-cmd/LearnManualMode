@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Master Manual Mode</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="color-scheme" content="dark light" />
+  <link rel="preload" as="audio" href="./assets/shutter.ogg" />
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <main id="app">
+    <div class="viewfinder-wrap" aria-label="Camera viewfinder">
+      <canvas id="vf" width="1280" height="720" aria-label="Scene canvas"></canvas>
+
+      <!-- overlay chrome: grid + frame corners are drawn in canvas; this is UI only -->
+      <div id="hud" class="hud" aria-live="polite">
+        <!-- top bar -->
+        <div class="topbar">
+          <div class="brand">Master Manual Mode</div>
+          <div class="scene-tabs" role="tablist" aria-label="Scenes">
+            <button id="tab-runner" role="tab" aria-selected="true" class="tab is-active">Runner</button>
+            <button id="tab-waterfall" role="tab" aria-selected="false" class="tab">Motion Blur Challenge</button>
+          </div>
+        </div>
+
+        <!-- controls cluster -->
+        <div class="controls glass">
+          <div class="ctrl dials">
+            <div class="dial" id="dial-shutter" tabindex="0" aria-label="Shutter speed dial" aria-valuemin="0" aria-valuemax="1" aria-valuenow="0">
+              <div class="dial-knob"></div>
+              <div class="dial-label">Shutter</div>
+              <div class="dial-readout" id="readout-shutter">1/250</div>
+            </div>
+
+            <div class="dial" id="dial-aperture" tabindex="0" aria-label="Aperture dial" aria-valuemin="0" aria-valuemax="1" aria-valuenow="0">
+              <div class="dial-knob"></div>
+              <div class="dial-label">Aperture</div>
+              <div class="dial-readout" id="readout-aperture">f/4</div>
+            </div>
+          </div>
+
+          <div class="ctrl iso">
+            <label for="iso" class="label">ISO</label>
+            <input id="iso" type="range" min="100" max="6400" step="10" value="200" />
+            <output id="iso-out" for="iso">ISO 200</output>
+          </div>
+
+          <div class="ctrl actions">
+            <button id="btn-play" class="btn">⏸︎</button>
+            <button id="btn-shutter" class="btn btn-shutter" aria-label="Take photo (Enter)">
+              <span class="ring"></span><span class="core"></span>
+            </button>
+            <button id="btn-export" class="btn">Export PNG</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- white flash overlay -->
+      <div id="flash" class="flash" aria-hidden="true"></div>
+    </div>
+
+    <noscript>
+      This app requires JavaScript. Please enable it and reload.
+    </noscript>
+
+    <section class="notes">
+      <p><strong>Tip:</strong> Use the spritesheet tester (<code>spritesheet-test.html</code>) to size your own PNGs before swapping them in.</p>
+    </section>
+  </main>
+
+  <script src="./app.js" defer></script>
+</body>
+</html>
