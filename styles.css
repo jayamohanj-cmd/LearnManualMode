@@ -1,0 +1,88 @@
+:root{
+  --bg:#0b0d10; --fg:#e8eef2; --glass:rgba(20,25,32,0.55);
+  --accent:#7cd1ff; --accent2:#ffd37c; --line:#ffffff22; --lineBold:#ffffff55;
+}
+
+*{box-sizing:border-box}
+html,body{height:100%}
+html{background:var(--bg);color:var(--fg);font:16px/1.4 ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial}
+body{margin:0;display:grid;place-items:center;padding:16px}
+
+#app{width:100%;max-width:1200px}
+
+.viewfinder-wrap{
+  position:relative; margin-inline:auto; aspect-ratio:16/9; width:100%;
+  max-height:80vh; background:#000; border-radius:16px; box-shadow:0 10px 40px #0008; overflow:hidden;
+}
+
+#vf{width:100%;height:100%;image-rendering:auto;display:block}
+
+.hud{
+  position:absolute; inset:0; display:flex; flex-direction:column; justify-content:space-between; pointer-events:none;
+  padding:8px 10px;
+}
+
+.topbar{display:flex;justify-content:space-between;align-items:center;gap:8px;pointer-events:auto}
+.brand{opacity:.8;font-weight:600;font-size:14px}
+.scene-tabs{display:flex;gap:6px}
+.tab{
+  background:transparent;border:1px solid var(--lineBold);color:var(--fg);padding:4px 8px;border-radius:999px;font-size:12px;cursor:pointer;
+}
+.tab.is-active{background:var(--accent);color:#00111a;border-color:transparent}
+
+.controls{
+  display:grid;grid-template-columns:1fr auto auto;align-items:center;gap:10px;pointer-events:auto;
+  margin:8px; padding:8px; border-radius:12px; border:1px solid var(--line);
+  background:var(--glass); backdrop-filter: blur(8px) saturate(1.2);
+}
+.glass::after{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none}
+
+.ctrl{display:flex;align-items:center;gap:12px}
+.dials{gap:16px}
+.dial{
+  position:relative; width:74px; height:74px; border-radius:50%; border:1px solid var(--lineBold);
+  background:linear-gradient(#131922,#0d1218); display:grid; place-items:center; cursor:pointer;
+}
+.dial-knob{
+  width:50px;height:50px;border-radius:50%; background:radial-gradient(ellipse at 30% 30%, #273446 0%, #111821 70%);
+  border:1px solid #ffffff1a; box-shadow: inset 0 2px 8px #000a;
+  transform:rotate(0deg); transition:transform .06s linear;
+}
+.dial-label{position:absolute;bottom:36px;left:50%;transform:translateX(-50%);font-size:11px;opacity:.8}
+.dial-readout{position:absolute;bottom:10px;left:50%;transform:translateX(-50%);font-weight:700;font-size:12px}
+
+.iso .label{font-size:12px;opacity:.8}
+#iso{width:220px}
+#iso-out{font-size:12px;opacity:.9;min-width:80px;text-align:right}
+
+.actions{margin-left:auto;gap:8px}
+.btn{
+  pointer-events:auto; border:1px solid var(--lineBold); background:#131922; color:var(--fg);
+  padding:8px 10px; border-radius:10px; cursor:pointer; font-weight:600;
+}
+.btn:hover{border-color:var(--accent);box-shadow:0 0 0 2px #7cd1ff22 inset}
+.btn:active{transform:translateY(1px)}
+.btn:focus-visible{outline:2px solid var(--accent)}
+
+.btn-shutter{
+  position:relative; width:52px; height:52px; border-radius:999px; padding:0; display:grid; place-items:center;
+  background:linear-gradient(#1a2230,#0e131b);
+}
+.btn-shutter .ring{
+  position:absolute; inset:6px; border-radius:999px; border:2px solid #ffffff33; box-shadow:inset 0 2px 6px #000a;
+}
+.btn-shutter .core{
+  width:24px;height:24px;border-radius:999px;background:radial-gradient(circle at 30% 30%, #36445a, #0a0f15);
+  border:1px solid #ffffff1a;
+}
+.btn-shutter:focus-visible{outline:2px solid var(--accent2)}
+
+.flash{
+  position:absolute; inset:0; background:#fff; opacity:0; pointer-events:none; transition:opacity .18s ease-out;
+}
+
+.notes{max-width:900px;margin:16px auto 0;opacity:.8;font-size:14px}
+
+/* prevent text selection while dragging knobs */
+body.dragging{user-select:none; cursor:grabbing}
+.dial:focus-visible{outline:2px solid var(--accent)}
